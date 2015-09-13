@@ -107,9 +107,6 @@ public class Parser {
 
         PrintWriter writer = new PrintWriter("output.tex");
         writer.println("\\documentclass{article}");
-        writer.println("\\usepackage{amssymb,amsmath}");
-        writer.println("\\usepackage[english,russian]{babel}");
-        writer.println("\\usepackage{graphicx}");
         writer.println("\\begin{document}");
         writer.println("\\begin{center}");
 
@@ -153,7 +150,13 @@ public class Parser {
                         writer.print("+");
                     }
                 }
-                writer.print(middleEquationElement.getCoefficient());
+                if( Math.abs(middleEquationElement.getCoefficient()) == 1){
+                    if(middleEquationElement.getCoefficient() < 0){
+                        writer.print("-");
+                    }
+                } else {
+                    writer.print(middleEquationElement.getCoefficient());
+                }
                 writer.print(generateOutputElement(middleEquationElement.getArc(), middleEquationElement.getProcess()));
             }
             writer.print("=");
